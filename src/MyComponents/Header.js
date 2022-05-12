@@ -44,13 +44,17 @@ export default function Header(props) {
               </button>
             </form>
           ) : (
-            "no searchbar"
+            ""
           )}
         </div>
       </div>
     </nav>
   );
 }
+Header.defaultProps = {
+  title: "Your title here",
+};
 Header.propTypes = {
   title: PropTypes.string,
+  searchBar: PropTypes.bool.isRequired,
 };
