@@ -3,7 +3,7 @@ import Header from './MyComponents/Header';
 import { Todos } from './MyComponents/Todos';
 import { Footer } from './MyComponents/Footer';
 import { AddTodo } from './MyComponents/AddTodo';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 function App() {
   let initTodo;
   if (localStorage.getItem('todos') === null) {
@@ -33,9 +33,11 @@ function App() {
     };
     setTodos([...todos, myTodo]);
     console.log(myTodo);
-    localStorage.setItem('todos', JSON.stringify(todos));
   };
   const [todos, setTodos] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
   return (
     <>
       <Header title="MyTodo List" searchBar={false} />
