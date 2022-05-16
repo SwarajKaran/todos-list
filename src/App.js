@@ -2,6 +2,7 @@ import './App.css';
 import Header from './MyComponents/Header';
 import { Todos } from './MyComponents/Todos';
 import { Footer } from './MyComponents/Footer';
+import { AddTodo } from './MyComponents/AddTodo';
 import React, { useState } from 'react';
 function App() {
   const onDelete = (todo) => {
@@ -14,6 +15,17 @@ function App() {
         return e !== todo;
       })
     );
+  };
+  const addTodo = function (title, desc) {
+    console.log(`I am adding ${title}, ${desc}`);
+    let sno = todos[todos.length - 1]?.sno ?? 0 + 1;
+    const myTodo = {
+      sno: sno,
+      title: title,
+      desc: desc,
+    };
+    setTodos([...todos, myTodo]);
+    console.log(myTodo);
   };
   const [todos, setTodos] = useState([
     {
@@ -35,6 +47,7 @@ function App() {
   return (
     <>
       <Header title="MyTodo List" searchBar={false} />
+      <AddTodo addTodo={addTodo} />
       <Todos todos={todos} onDelete={onDelete} />
       <Footer />
     </>

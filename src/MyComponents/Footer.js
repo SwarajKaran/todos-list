@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export const Footer = () => {
   return (
-    <div>Footer Works</div>
-  )
-}
+    <footer className="bg-dark text-light py-1 ">
+      <p className="text-center">Copyright &copy; My Todos List </p>
+    </footer>
+  );
+};
