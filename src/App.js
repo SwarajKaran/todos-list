@@ -3,7 +3,9 @@ import Header from './MyComponents/Header';
 import { Todos } from './MyComponents/Todos';
 import { Footer } from './MyComponents/Footer';
 import { AddTodo } from './MyComponents/AddTodo';
+import { About } from './MyComponents/About';
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   let initTodo;
   if (localStorage.getItem('todos') === null) {
@@ -40,10 +42,29 @@ function App() {
   }, [todos]);
   return (
     <>
-      <Header title="MyTodo List" searchBar={false} />
-      <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} onDelete={onDelete} />
-      <Footer />
+      <BrowserRouter>
+        <Header title="MyTodo List" searchBar={false} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddTodo addTodo={addTodo} />
+                <Todos todos={todos} onDelete={onDelete} />
+              </>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <>
+                <About />
+              </>
+            }
+          />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
